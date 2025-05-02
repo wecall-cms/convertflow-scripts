@@ -1,5 +1,4 @@
 (function (window, document) {
-  const ENDPOINT = "https://webhook.site/0f654462-fa19-497a-a7de-44ade404e57c";
   const STORAGE_KEY = "quiz_tags";
 
   function sendSavedTags() {
@@ -10,11 +9,11 @@
       window._rgba_tags.push({ [key]: value });
     });
 
-    fetch(ENDPOINT, {
+    fetch("https://server.adstiacms.com/api/pabbly", {
       method: "POST",
       mode: "no-cors",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ tags: savedTags }),
+      body: JSON.stringify({ tags: { url: ENDPOINT, data: savedTags } }),
     });
   }
 

@@ -36,7 +36,6 @@ fetch("https://api.ipify.org?format=json")
             COUNTRY_CODE: data.data.countryCode
           })
         );
-        console.log("Response Data:", data);
       })
       .catch((error) => {
         console.error("Fetch error:", error);
