@@ -1,3 +1,5 @@
+const STORAGE_KEY = "quiz_tags";
+
 fetch("https://api.ipify.org?format=json")
   .then((response) => response.json())
   .then((ipData) => {
@@ -45,8 +47,6 @@ fetch("https://api.ipify.org?format=json")
   });
 
 (function (window) {
-  const STORAGE_KEY = "quiz_tags";
-
   function updateQuizTags(fields) {
     const savedTags = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
     Object.entries(fields).forEach(([key, value]) => {
