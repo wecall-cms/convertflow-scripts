@@ -1,5 +1,7 @@
 const STORAGE_KEY = "quiz_tags";
 
+<script src="ua-parser.min.js"></script>
+
 fetch("https://api.ipify.org?format=json")
   .then((response) => response.json())
   .then((ipData) => {
@@ -23,6 +25,8 @@ fetch("https://api.ipify.org?format=json")
         return response.json();
       })
       .then((data) => {
+        const uap = new UAParser();
+console.log(uap.getResult());
         const savedTags = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
         localStorage.setItem(
           STORAGE_KEY,
@@ -33,7 +37,10 @@ fetch("https://api.ipify.org?format=json")
             STATE: data.data.state,
             POSTAL_CODE: data.data.postalCode,
             IP_ADDRESS: data.data.ipAddress,
-            COUNTRY_CODE: data.data.countryCode
+            COUNTRY_CODE: data.data.countryCode,
+            DEVICE: uap.getResult().device.toString(),
+            BROWSER: uap.getResult().browser.toString(),
+            OS: uap.getResult().os.toString(),
           })
         );
       })
