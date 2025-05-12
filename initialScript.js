@@ -24,7 +24,6 @@ fetch("https://api.ipify.org?format=json")
       })
       .then((data) => {
         const uap = new UAParser();
-console.log(uap.getResult());
         const savedTags = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
         localStorage.setItem(
           STORAGE_KEY,
@@ -36,9 +35,13 @@ console.log(uap.getResult());
             POSTAL_CODE: data.data.postalCode,
             IP_ADDRESS: data.data.ipAddress,
             COUNTRY_CODE: data.data.countryCode,
-            DEVICE: uap.getResult().device.toString(),
-            BROWSER: uap.getResult().browser.toString(),
-            OS: uap.getResult().os.toString(),
+            DEVICE: uap.getResult().device.model.toString(),
+            BROWSER: uap.getResult().browser.name.toString(),
+            OS: uap.getResult().os.name.toString(),
+            USER_AGENT: uap.getResult().ua.toString(),
+            OS_VERSION: uap.getResult().os.version.toString(),
+            BROWSER_VERSION: uap.getResult().browser.version.toString(),
+            DEVICE_MODEL: uap.getResult().device.model.toString()
           })
         );
       })
