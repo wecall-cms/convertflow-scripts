@@ -1,7 +1,5 @@
 const STORAGE_KEY = "quiz_tags";
 
-<script src="ua-parser.min.js"></script>
-
 fetch("https://api.ipify.org?format=json")
   .then((response) => response.json())
   .then((ipData) => {
